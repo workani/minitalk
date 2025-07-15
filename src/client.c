@@ -8,7 +8,7 @@ void send_signal(int sig)
 	usleep(10 * 1000);
 }
 
-void send_binary(unsigned char octet)
+void send_byte(unsigned char octet)
 {
 	int i;
 	unsigned char mask;
@@ -25,6 +25,20 @@ void send_binary(unsigned char octet)
 	}
 }
 
+void send_str(char *str)
+{
+	size_t i;
+	size_t str_len;
+
+	i = 0;
+	str_len = ft_strlen(str);
+	while(str[i])
+	{
+		send_byte(str[i]);
+		i++;
+	}
+}
+
 
 int main(int argc, char **argv)
 {
@@ -35,5 +49,6 @@ int main(int argc, char **argv)
 	}
 	PID = ft_atoi(argv[1]);
 
-	send_binary(ft_atoi(argv[2]));
+	send_str(argv[2]);
+	return (0);
 }
