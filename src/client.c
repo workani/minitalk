@@ -5,7 +5,7 @@ int PID;
 void send_signal(int sig)
 {
 	kill(PID, sig);
-	usleep(10 * 1000);
+	usleep(200);
 }
 
 void send_byte(unsigned char octet)
@@ -37,6 +37,7 @@ void send_str(char *str)
 		send_byte(str[i]);
 		i++;
 	}
+	send_byte('\0');
 }
 
 
