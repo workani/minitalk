@@ -1,0 +1,12 @@
+# Ignore editor-specific folders
+.vscode/
+
+# Ignore compiled binary files
+**/*.o
+**/*.a
+a.out
+server
+client
+
+# Ignore playground/test files
+playground.c
