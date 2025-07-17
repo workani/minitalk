@@ -5,7 +5,7 @@ int PID;
 void send_signal(int sig)
 {
 	kill(PID, sig);
-	usleep(200);
+	usleep(1);
 }
 
 void send_byte(unsigned char octet)
@@ -38,18 +38,20 @@ void send_str(char *str)
 		i++;
 	}
 	send_byte('\0');
-}
-
-
+} 	
 int main(int argc, char **argv)
 {
 	if(argc != 3)
 	{
-		ft_printf("ERROR Please, check if you're passing correct amount of argumnets! (%d vs 2)\n", argc - 1);
+		ft_printf("ERROR Incorrect correct amount of argumnets! (%d vs 2)\n", argc - 1);
 		exit(1);
 	}
 	PID = ft_atoi(argv[1]);
-
+	if (kill(PID, 0) == -1)
+	{
+		ft_printf("ERROR Incorrect PID!\n", argc - 1);
+		exit(1);
+	}
 	send_str(argv[2]);
 	return (0);
 }
